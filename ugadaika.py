@@ -22,7 +22,9 @@ def play_again():
         play_again()
         
 def ugadaika():
-    rand_num = randint(1, 100)
+    print('give upper limit')
+    upper_limit = int(input())
+    rand_num = randint(1, upper_limit)
     tries = 0
     while(True):
         num = input()
