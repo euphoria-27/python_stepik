@@ -71,20 +71,22 @@ def display_hangman(tries):
 '''
     ]
     return stages[tries]
-
+    
+    
 def play(word):
     word_completion = '_' * len(word)
     guessed = False
     guessed_letters = []
     guessed_words = []
     tries = 6
+    help_given = False
     
     print('Lets Play!')
     print(display_hangman(tries))
     print(word_completion)
     print(word)
     
-    while(tries > 0):
+    while(tries > 0 and not guessed):
         print('your letter?')
         letter = input()
         while(not letter.isalpha() or letter in guessed_letters):
@@ -104,12 +106,20 @@ def play(word):
                     guessed_letters.append(letter)
         else:
             tries -= 1
+            if(tries == 3 and not help_given):
+                print('want help? y/n')
+                if input() == 'y':
+                    word_completion = word[0] + word_completion[1:len(word) - 1] + word[-1]
+                    help_given == True
         print(display_hangman(tries))
         print('guessed lettters:', *guessed_letters)
         print('tries left:', tries)
         print(word_completion)
+        
         if(word_completion == word.upper()):
-            break
+            guessed = True
+        
+        
     
     if(tries == 0):
         print('you lost')
