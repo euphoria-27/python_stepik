@@ -84,7 +84,7 @@ def play(word):
     print('Lets Play!')
     print(display_hangman(tries))
     print(word_completion)
-    print(word)
+    #print(word)
     
     while(tries > 0 and not guessed):
         print('your letter?')
